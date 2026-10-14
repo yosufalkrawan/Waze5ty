@@ -1,1 +1,320 @@
+<!DOCTYPE html>
 
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1120">
+  <meta name="description" content="وظيفتي Waze5ty - منصتك العربية للبحث عن فرص العمل والتواصل مع أصحاب الشركات.">
+  <title>وظيفتي | Waze5ty</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080e1c;
+      --panel: #101a2d;
+      --gold: #e9bd68;
+      --text: #f6f7fb;
+      --muted: #a7b0c2;
+      --line: rgba(255,255,255,.1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    .container { width: min(1120px, 92%); margin: auto; }
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(8,14,28,.94);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 12px 0;
+    }
+    .logo { font-size: 25px; font-weight: 900; letter-spacing: -.5px; }
+    .logo span { color: var(--gold); }
+    .links { display: flex; gap: 20px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
+    .links a:hover { color: var(--gold); }
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: #16120b;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s;
+    }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.06); }
+    .btn.secondary { background: transparent; color: var(--text); border-color: var(--line); }
+    .hero {
+      padding: 85px 0 65px;
+      background:
+        radial-gradient(ellipse at 15% 20%, rgba(233,189,104,.13), transparent 38%),
+        radial-gradient(ellipse at 85% 75%, rgba(62,105,180,.15), transparent 40%);
+    }
+    .tag {
+      display: inline-block;
+      color: var(--gold);
+      border: 1px solid rgba(233,189,104,.3);
+      background: rgba(233,189,104,.07);
+      border-radius: 99px;
+      padding: 5px 13px;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    h1 { font-size: clamp(34px, 6vw, 62px); line-height: 1.3; max-width: 800px; }
+    h1 span { color: var(--gold); }
+    .hero p { color: var(--muted); font-size: 17px; max-width: 650px; margin: 20px 0 28px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .search {
+      margin-top: 38px;
+      background: #fff;
+      color: #182033;
+      border-radius: 16px;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 10px;
+      max-width: 850px;
+      box-shadow: 0 20px 70px #0004;
+    }
+    .search input, .search select {
+      width: 100%;
+      min-width: 0;
+      padding: 13px;
+      border: 1px solid #e3e7ef;
+      border-radius: 9px;
+      background: #fff;
+      color: #182033;
+      outline-color: var(--gold);
+    }
+    .section { padding: 65px 0; }
+    .section-head { margin-bottom: 28px; }
+    .section-head h2 { font-size: clamp(25px, 4vw, 36px); }
+    .section-head p { color: var(--muted); margin-top: 5px; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .stat, .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 23px;
+    }
+    .stat strong { display: block; color: var(--gold); font-size: 29px; }
+    .stat span { color: var(--muted); font-size: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { transition: .2s; }
+    .card:hover { border-color: rgba(233,189,104,.5); transform: translateY(-3px); }
+    .company { color: var(--gold); font-size: 13px; }
+    .card h3 { font-size: 19px; margin: 7px 0; }
+    .card p { color: var(--muted); font-size: 14px; }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 15px 0; }
+    .chip { font-size: 12px; background: #1c2940; color: #d5dced; padding: 5px 9px; border-radius: 7px; }
+    .card-bottom { border-top: 1px solid var(--line); padding-top: 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .salary { color: var(--gold); font-weight: 800; font-size: 13px; }
+    .small-btn { background: transparent; color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; cursor: pointer; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feature-icon { font-size: 28px; }
+    .feature h3 { margin: 8px 0; }
+    .feature p { color: var(--muted); font-size: 14px; }
+    .cta {
+      padding: 38px;
+      border: 1px solid rgba(233,189,104,.25);
+      background: linear-gradient(120deg, #172239, #11182a);
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .cta p { color: var(--muted); margin-top: 8px; }
+    footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 13px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+    .notice { margin-top: 14px; color: var(--gold); font-size: 13px; }
+    @media (max-width: 760px) {
+      .links { order: 3; width: 100%; justify-content: center; gap: 15px; }
+      .nav { justify-content: space-between; }
+      .search { grid-template-columns: 1fr; }
+      .grid, .features { grid-template-columns: 1fr; }
+      .stats { gap: 8px; }
+      .stat { padding: 14px 10px; }
+      .stat strong { font-size: 22px; }
+      .stat span { font-size: 12px; }
+      .hero { padding-top: 55px; }
+      .cta { padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#"><span>وظيفتي</span> Waze5ty</a>
+      <nav class="links">
+        <a href="#jobs">الوظائف</a>
+        <a href="#features">مميزاتنا</a>
+        <a href="#employers">أصحاب الشركات</a>
+      </nav>
+      <a class="btn" href="#start">ابدأ الآن</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="tag">✦ مستقبلك المهني يبدأ من هنا</span>
+        <h1>فرصتك القادمة قد تغيّر <span>مستقبلك كله</span></h1>
+        <p>اكتشف فرص عمل تناسب مهاراتك، وأنشئ ملفك المهني، وتواصل مع أصحاب العمل من خلال تجربة عربية سهلة وحديثة.</p>
+        <div class="actions">
+          <a class="btn" href="#jobs">اكتشف الوظائف ←</a>
+          <a class="btn secondary" href="#employers">أنا صاحب شركة</a>
+        </div>
+        <form class="search" id="searchForm">
+          <input id="keyword" type="search" placeholder="المسمى الوظيفي أو المهارة">
+          <select id="category" aria-label="مجال العمل">
+            <option value="">كل المجالات</option>
+            <option>تقنية وبرمجة</option>
+            <option>تسويق ومبيعات</option>
+            <option>تصميم وإبداع</option>
+            <option>إدارة وأعمال</option>
+            <option>خدمة عملاء</option>
+          </select>
+          <button class="btn" type="submit">ابحث عن وظيفة</button>
+        </form>
+        <div class="notice" id="searchMessage" aria-live="polite"></div>
+      </div>
+    </section>
+
+```
+<section class="container section">
+  <div class="stats">
+    <div class="stat"><strong>فرص جديدة</strong><span>اكتشف فرصًا مهنية متنوعة</span></div>
+    <div class="stat"><strong>ملفك المهني</strong><span>اجمع مهاراتك وخبراتك في مكان واحد</span></div>
+    <div class="stat"><strong>خطوتك التالية</strong><span>ابدأ رحلة البحث عن عمل</span></div>
+  </div>
+</section>
+
+<section class="container section" id="jobs">
+  <div class="section-head">
+    <h2>فرص تستحق أن تكتشفها</h2>
+    <p>نماذج توضيحية لشكل الوظائف داخل المنصة.</p>
+  </div>
+  <div class="grid" id="jobGrid">
+    <article class="card" data-category="تقنية وبرمجة" data-title="مطور واجهات ويب">
+      <span class="company">شركة تقنية · مثال توضيحي</span>
+      <h3>مطور واجهات ويب</h3>
+      <p>المساهمة في بناء تجارب ويب سهلة وسريعة الاستخدام.</p>
+      <div class="chips"><span class="chip">HTML وCSS</span><span class="chip">JavaScript</span><span class="chip">عن بُعد</span></div>
+      <div class="card-bottom"><span class="salary">راتب يُحدد لاحقًا</span><button class="small-btn applyBtn">تفاصيل الوظيفة</button></div>
+    </article>
+    <article class="card" data-category="تصميم وإبداع" data-title="مصمم جرافيك">
+      <span class="company">وكالة إبداعية · مثال توضيحي</span>
+      <h3>مصمم جرافيك</h3>
+      <p>تصميم مواد بصرية وهوية مميزة للمشروعات.</p>
+      <div class="chips"><span class="chip">تصميم</span><span class="chip">إبداع</span><span class="chip">هجين</span></div>
+      <div class="card-bottom"><span class="salary">راتب يُحدد لاحقًا</span><button class="small-btn applyBtn">تفاصيل الوظيفة</button></div>
+    </article>
+    <article class="card" data-category="تسويق ومبيعات" data-title="أخصائي تسويق رقمي">
+      <span class="company">فريق تسويق · مثال توضيحي</span>
+      <h3>أخصائي تسويق رقمي</h3>
+      <p>المساعدة في تطوير الحملات وتحليل نتائجها.</p>
+      <div class="chips"><span class="chip">تسويق رقمي</span><span class="chip">تحليل</span><span class="chip">دوام كامل</span></div>
+      <div class="card-bottom"><span class="salary">راتب يُحدد لاحقًا</span><button class="small-btn applyBtn">تفاصيل الوظيفة</button></div>
+    </article>
+  </div>
+  <p class="notice">تنبيه: الوظائف المعروضة أمثلة تصميمية وليست إعلانات توظيف حقيقية.</p>
+</section>
+
+<section class="container section" id="features">
+  <div class="section-head">
+    <h2>كل ما تحتاجه في مكان واحد</h2>
+    <p>نبني تجربة تساعد الباحثين عن عمل وأصحاب الشركات.</p>
+  </div>
+  <div class="features">
+    <article class="card feature"><div class="feature-icon">👤</div><h3>ملف مهني متكامل</h3><p>اعرض مهاراتك وخبراتك ومعلوماتك المهنية بطريقة منظمة.</p></article>
+    <article class="card feature"><div class="feature-icon">🔎</div><h3>بحث أسهل</h3><p>ابحث عن الفرص حسب المسمى الوظيفي ومجال العمل.</p></article>
+    <article class="card feature"><div class="feature-icon">🏢</div><h3>مساحة لأصحاب العمل</h3><p>واجهة تمهيدية للشركات لاستكشاف خدمات التوظيف.</p></article>
+  </div>
+</section>
+
+<section class="container section" id="employers">
+  <div class="cta">
+    <div>
+      <h2>تبحث عن المواهب لفريقك؟</h2>
+      <p>استعد لنشر فرص العمل والوصول إلى المرشحين المناسبين.</p>
+    </div>
+    <a class="btn" href="#start">انضم كصاحب عمل</a>
+  </div>
+</section>
+
+<section class="container section" id="start">
+  <div class="cta">
+    <div>
+      <h2>ابدأ رحلتك مع وظيفتي</h2>
+      <p>هذه النسخة واجهة أولية. إنشاء الحسابات والتقديم الفعلي يحتاج إلى ربط آمن بقاعدة بيانات وخدمة تسجيل دخول.</p>
+    </div>
+    <a class="btn" href="#jobs">استكشف الواجهة</a>
+  </div>
+</section>
+```
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> وظيفتي Waze5ty</span>
+      <span>منصة عربية لبناء فرص مهنية أفضل</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("searchForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const keyword = document.getElementById("keyword").value.trim().toLowerCase();
+      const category = document.getElementById("category").value;
+      const cards = document.querySelectorAll("#jobGrid .card");
+      let count = 0;
+
+      cards.forEach(function (card) {
+        const matchesKeyword = !keyword || card.dataset.title.toLowerCase().includes(keyword) ||
+          card.textContent.toLowerCase().includes(keyword);
+        const matchesCategory = !category || card.dataset.category === category;
+        const visible = matchesKeyword && matchesCategory;
+        card.hidden = !visible;
+        if (visible) count++;
+      });
+
+      document.getElementById("searchMessage").textContent =
+        count ? "عدد النتائج المطابقة: " + count + " (وظائف تجريبية)." :
+        "لا توجد نتائج مطابقة في الأمثلة الحالية. جرّب كلمة أخرى.";
+      document.getElementById("jobs").scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.querySelectorAll(".applyBtn").forEach(function (button) {
+      button.addEventListener("click", function () {
+        alert("هذه وظيفة تجريبية للعرض فقط. التقديم الفعلي سيتاح بعد إضافة نظام الحسابات والوظائف.");
+      });
+    });
+  </script>
+
+</body>
+    </html>
+  
